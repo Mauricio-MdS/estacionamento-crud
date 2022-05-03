@@ -4,34 +4,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Estacionamento CRUD</title>
 </head>
 <body>
-    <header>
+    <header class="estacionamento">
         <h1>Estacionamento CRUD</h1>
     </header>
-    <main>
+    <main class="container">
         <header>
-            <h2>Lista de veículos</h2>
-            <button>Registrar veículo</button>
+            <h2 class="titulo">Lista de veículos</h2>
+            <button class="button registrar">Registrar veículo</button>
         </header>
-        <form>
-            <input placeholder="Nome" type="text">
-            <input placeholder="Placa" type="text">
-            <label>Entrada: <input type="time" ></label>
-            <button>Salvar</button>
-            <button>Cancelar</button>
+        <form class="formulario">
+            <input class="input formulario__nome" placeholder="Nome" type="text">
+            <input class="input formulario__placa" placeholder="Placa" type="text">
+            <label>Entrada: <input class="input formulario__horario" type="time" ></label>
+            <div class="formulario__botoes">
+                <button class="button">Salvar</button>
+                <button class="button">Cancelar</button>
+             </div>
         </form>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Placa</th>
-                    <th>Entrada</th>
-                    <th>Gerenciar</th>
+                    <th class="table__nome">Nome</th>
+                    <th class="table__placa">Placa</th>
+                    <th class="table__entrada">Entrada</th>
+                    <th class="table__gerenciar">Gerenciar</th>
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td class="celulas">teste</td>
+                    <td class="celulas">teste</td>
+                    <td class="celulas">teste</td>
+                    <td class="celulas">teste</td>
+                </tr>
+                <tr>
+                    <td class="celulas">teste</td>
+                    <td class="celulas">teste</td>
+                    <td class="celulas">teste</td>
+                    <td class="celulas">teste</td>
+                </tr>
+                <tr>
+                    <td class="celulas">teste</td>
+                    <td class="celulas">teste</td>
+                    <td class="celulas">teste</td>
+                    <td class="celulas">teste</td>
+                </tr>
 
             </tbody>
         </table>

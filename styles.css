@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+*{
+    --main-color: cornflowerblue;
+    --secondary-color: white;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.estacionamento{
+    background-color: var(--main-color);
+    color: var(--secondary-color);
+    padding: 8px 16px;
+}
+
+.container{
+    margin:40px auto;
+    max-width: 720px;
+}
+
+.titulo{
+    font-size: 2rem;
+}
+
+.button{
+    background-color: var(--main-color);
+    border: none;
+    border-radius: 5px;
+    color: var(--secondary-color);
+    padding:8px;
+}
+
+.registrar{
+    margin:8px;
+}
+
+.formulario{
+    display: none;
+    margin:8px 0;
+}
+
+.input{
+    border:none;
+    border-bottom: 1px var(--main-color) solid; 
+}
+
+.formulario__nome{
+    width: 50%;
+}
+
+.formulario__botoes{
+    display:block;
+    margin: 16px;
+}
+
+.table{
+    margin: 16px;
+    width: 100%;
+}
+
+.table__nome{
+    width: 40%;
+}
+
+.table__placa{
+    width: 20%;
+}
+
+.table__entrada{
+    width: 20%;
+}
+
+.table__gerenciar{
+    width: 20%;
+}
+
+.celulas{
+    border-bottom: 1px solid var(--main-color);
+    margin: 0px;
+    padding: 0px;
+}

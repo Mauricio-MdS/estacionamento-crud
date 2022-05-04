@@ -5,4 +5,9 @@ export default class VeiculosNoPatio {
     adiciona(novoVeiculo) {
         this.veiculos.push(novoVeiculo);
     }
+    lista() {
+        let novaLista = [];
+        novaLista.push(...this.veiculos);
+        return novaLista;
+    }
 }

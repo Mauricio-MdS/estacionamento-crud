@@ -24,7 +24,7 @@ function registrarVeiculo() {
 function salva() {
     const veiculo = new Veiculo(inputNome.value, inputPlaca.value, inputEntrada.value);
     veiculosNoPatio.adiciona(veiculo);
-    view.atualiza();
+    view.atualiza(veiculosNoPatio);
     limpaFormulario();
 }
 function visibilidadeFormulario() {

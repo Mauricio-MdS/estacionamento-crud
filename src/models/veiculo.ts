@@ -1,6 +1,19 @@
 export default class Veiculo{
     constructor(
-        private nome: string, 
-        private placa: string, 
-        private entrada: string){}
+        private _nome: string, 
+        private _placa: string, 
+        private _entrada: string){}
+
+        get nome(){
+            return this._nome;
+        }
+
+        get placa(){
+            return this._placa;
+        }
+
+        get entrada(){
+            return this._entrada;
+        }
+
 }

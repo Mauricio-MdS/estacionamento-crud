@@ -5,6 +5,9 @@ export default class VeiculosNoPatio {
     adiciona(novoVeiculo) {
         this.veiculos.push(novoVeiculo);
     }
+    remove(placa) {
+        this.veiculos = this.veiculos.filter(veiculo => veiculo.placa !== placa);
+    }
     lista() {
         let novaLista = [];
         novaLista.push(...this.veiculos);

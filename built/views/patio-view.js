@@ -10,8 +10,8 @@ export default class PatioView {
                 <td> ${veiculo.placa} </td>
                 <td> ${veiculo.entrada} </td>
                 <td>
-                    <button class="button saida">Saída</button>
-                    <button class="button editar">Editar</button>
+                    <button class="button saida" data-placa="${veiculo.placa}">Saída</button>
+                    <button class="button editar" data-placa="${veiculo.placa}">Editar</button>
                 </td>
             </tr>`;
         }).join("");

@@ -33,11 +33,18 @@
 
 .registrar{
     margin:8px;
+    transition: 0.3s;
 }
 
 .formulario{
-    display: none;
     margin:8px 0;
+    transition: 0.3s;
+}
+
+.invisible{
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
 }
 
 .input{

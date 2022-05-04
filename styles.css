@@ -28,6 +28,7 @@
     border: none;
     border-radius: 5px;
     color: var(--secondary-color);
+    cursor: pointer;
     padding:8px;
 }
 

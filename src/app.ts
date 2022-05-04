@@ -12,7 +12,26 @@ const botaoCancelar = document.querySelector(".cancelar") as HTMLButtonElement;
 const view = new PatioView();
 const veiculosNoPatio = new VeiculosNoPatio();
 
+interface VeiculoArquivado{
+    "_nome": string,
+    "_placa": string,
+    "_entrada": string,
+}
+
 /*Funções */
+function atualizaView(): void{
+    view.atualiza(veiculosNoPatio);
+    vinculaBotoes();
+}
+
+function buscaLocalStorage(): void{
+    if(!localStorage.patio) return;
+    const arquivado = JSON.parse(localStorage.patio);
+    arquivado["veiculos"].forEach((veiculo: VeiculoArquivado) => {
+        veiculosNoPatio.adiciona(new Veiculo(veiculo._nome, veiculo._placa, veiculo._entrada))
+    });
+    atualizaView();
+}
 
 function calculaTempo(placa: string):boolean{
     const veiculoQueEstaSaindo = veiculosNoPatio.lista().find(veiculo => veiculo.placa === placa);
@@ -44,8 +63,8 @@ function limpaFormulario(): void{
 function registrarSaida(placa: string): void{
     if (calculaTempo(placa)){
         veiculosNoPatio.remove(placa);
-        view.atualiza(veiculosNoPatio);
-        vinculaBotoes();
+        localStorage.setItem("patio", JSON.stringify(veiculosNoPatio));
+        atualizaView();
     }
 }
 
@@ -57,8 +76,8 @@ function registrarVeiculo(): void{
 function salva(): void{
     const veiculo = new Veiculo(inputNome.value, inputPlaca.value, inputEntrada.value);
     veiculosNoPatio.adiciona(veiculo);
-    view.atualiza(veiculosNoPatio);
-    vinculaBotoes();
+    localStorage.setItem("patio", JSON.stringify(veiculosNoPatio));
+    atualizaView();
     limpaFormulario();
 }
 
@@ -86,3 +105,5 @@ formulario.addEventListener("submit", e => {
     salva();
 });
 botaoCancelar.onclick = limpaFormulario;
+
+buscaLocalStorage()

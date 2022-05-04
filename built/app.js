@@ -11,6 +11,19 @@ const botaoCancelar = document.querySelector(".cancelar");
 const view = new PatioView();
 const veiculosNoPatio = new VeiculosNoPatio();
 /*Funções */
+function atualizaView() {
+    view.atualiza(veiculosNoPatio);
+    vinculaBotoes();
+}
+function buscaLocalStorage() {
+    if (!localStorage.patio)
+        return;
+    const arquivado = JSON.parse(localStorage.patio);
+    arquivado["veiculos"].forEach((veiculo) => {
+        veiculosNoPatio.adiciona(new Veiculo(veiculo._nome, veiculo._placa, veiculo._entrada));
+    });
+    atualizaView();
+}
 function calculaTempo(placa) {
     const veiculoQueEstaSaindo = veiculosNoPatio.lista().find(veiculo => veiculo.placa === placa);
     if (!veiculoQueEstaSaindo)
@@ -37,8 +50,8 @@ function limpaFormulario() {
 function registrarSaida(placa) {
     if (calculaTempo(placa)) {
         veiculosNoPatio.remove(placa);
-        view.atualiza(veiculosNoPatio);
-        vinculaBotoes();
+        localStorage.setItem("patio", JSON.stringify(veiculosNoPatio));
+        atualizaView();
     }
 }
 function registrarVeiculo() {
@@ -48,8 +61,8 @@ function registrarVeiculo() {
 function salva() {
     const veiculo = new Veiculo(inputNome.value, inputPlaca.value, inputEntrada.value);
     veiculosNoPatio.adiciona(veiculo);
-    view.atualiza(veiculosNoPatio);
-    vinculaBotoes();
+    localStorage.setItem("patio", JSON.stringify(veiculosNoPatio));
+    atualizaView();
     limpaFormulario();
 }
 function vinculaBotoes() {
@@ -71,3 +84,4 @@ formulario.addEventListener("submit", e => {
     salva();
 });
 botaoCancelar.onclick = limpaFormulario;
+buscaLocalStorage();

@@ -68,6 +68,12 @@ function calculaTempo(placa: string):boolean {
   const horas = horaAtual - horaEntrada;
   const minutos = minutoAtual - minutoEntrada;
 
+  if (horas < 0 || minutos <0 ) {
+    return confirm(
+        'Dados de entrada inconsistentes. Deseja remover o veículo do sistema?',
+    );
+  }
+
   return confirm(
       `O veículo ficou estacionado por ${horas} horas 
       e ${minutos} minutos. Confirma a saída?`);

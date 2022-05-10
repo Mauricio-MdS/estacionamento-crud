@@ -100,6 +100,14 @@ function salva() {
     limpaFormulario();
 }
 /**
+ * Define validação do campo de placa.
+ * Busca placa repetida e faz validação dos caracteres permitidos.
+ * @param {HTMLInputElement} campoPlaca Campo de placa
+ */
+function validaPlaca(campoPlaca) {
+    campoPlaca.value = campoPlaca.value.toUpperCase();
+}
+/**
  * Vincula os botões da tabela com os listeners de onclick.
  */
 function vinculaBotoes() {
@@ -117,10 +125,13 @@ function visibilidadeFormulario() {
     botaoRegistrar.classList.toggle('invisible');
     formulario.classList.toggle('invisible');
 }
+buscaLocalStorage();
 botaoRegistrar.onclick = registrarVeiculo;
+inputPlaca.addEventListener('blur', (e) => {
+    validaPlaca(e.target);
+});
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
     salva();
 });
 botaoCancelar.onclick = limpaFormulario;
-buscaLocalStorage();

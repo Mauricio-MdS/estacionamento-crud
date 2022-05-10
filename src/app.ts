@@ -127,6 +127,15 @@ function salva(): void {
 }
 
 /**
+ * Define validação do campo de placa.
+ * Busca placa repetida e faz validação dos caracteres permitidos.
+ * @param {HTMLInputElement} campoPlaca Campo de placa
+ */
+function validaPlaca(campoPlaca: HTMLInputElement): void {
+  campoPlaca.value = campoPlaca.value.toUpperCase();
+}
+
+/**
  * Vincula os botões da tabela com os listeners de onclick.
  */
 function vinculaBotoes(): void {
@@ -146,13 +155,19 @@ function visibilidadeFormulario(): void {
   formulario.classList.toggle('invisible');
 }
 
+buscaLocalStorage();
 
 botaoRegistrar.onclick = registrarVeiculo;
+
+inputPlaca.addEventListener('blur', (e) => {
+  validaPlaca(e.target as HTMLInputElement);
+});
 
 formulario.addEventListener('submit', (e) => {
   e.preventDefault();
   salva();
 });
+
 botaoCancelar.onclick = limpaFormulario;
 
-buscaLocalStorage();
+

@@ -58,6 +58,15 @@ function calculaTempo(placa) {
       e ${minutos} minutos. Confirma a saída?`);
 }
 /**
+ * Verifica se a placa possui 7 caracteres alfanuméricos
+ * @param {string} placa Placa a ser testada
+ * @return {boolean} Retorna true se a placa está no formato correto.
+ */
+function formatoPlaca(placa) {
+    const regex = /[A-Z0-9]{7}/;
+    return regex.test(placa);
+}
+/**
  * Limpa todos os formulários.
  */
 function limpaFormulario() {
@@ -106,6 +115,14 @@ function salva() {
  */
 function validaPlaca(campoPlaca) {
     campoPlaca.value = campoPlaca.value.toUpperCase();
+    campoPlaca.value = campoPlaca.value.replace('-', '');
+    campoPlaca.setCustomValidity('');
+    if (veiculosNoPatio.pesquisaPlaca(campoPlaca.value)) {
+        campoPlaca.setCustomValidity('O veículo já foi cadastrado no pátio.');
+    }
+    if (!formatoPlaca(campoPlaca.value)) {
+        campoPlaca.setCustomValidity('Erro no preenchimento da placa');
+    }
 }
 /**
  * Vincula os botões da tabela com os listeners de onclick.

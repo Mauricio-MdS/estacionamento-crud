@@ -67,6 +67,15 @@ function formatoPlaca(placa) {
     return regex.test(placa);
 }
 /**
+ * Retorna uma string com o horário atual no formato HH:mm
+ * @return {string} Horário atual no formato HH:mm
+ */
+function horarioAtual() {
+    const horas = String(new Date().getHours()).padStart(2, '0');
+    const minutos = String(new Date().getMinutes()).padStart(2, '0');
+    return `${horas}:${minutos}`;
+}
+/**
  * Limpa todos os formulários.
  */
 function limpaFormulario() {
@@ -94,7 +103,7 @@ function registrarSaida(placa) {
  */
 function registrarVeiculo() {
     visibilidadeFormulario();
-    inputEntrada.value = `${new Date().getHours()}:${new Date().getMinutes()}`;
+    inputEntrada.value = horarioAtual();
 }
 /**
  * Salva veículo com dados do formulário.

@@ -9,17 +9,10 @@ const inputEntrada = document.querySelector('.formulario__horario');
 const botaoCancelar = document.querySelector('.cancelar');
 const view = new PatioView();
 const veiculosNoPatio = new VeiculosNoPatio();
-/**
- * Atualiza a tabela com a lista de veículos e com botão de registrar saída.
- */
 function atualizaView() {
     view.atualiza(veiculosNoPatio);
     vinculaBotoes();
 }
-/**
- * Faz a busca no local storage ao iniciar o aplicativo.
- * Adiciona ao model veículos no patio e atualiza a View.
- */
 function buscaLocalStorage() {
     if (!localStorage.patio)
         return;
@@ -29,11 +22,6 @@ function buscaLocalStorage() {
     });
     atualizaView();
 }
-/**
- * Busca veículo na model e calcula o tempo de saída.
- * @param {string} placa A placa do veículo.
- * @return {boolean} Confirmação de que deseja registrar saída.
- */
 function calculaTempo(placa) {
     const veiculoQueEstaSaindo = veiculosNoPatio.
         lista().find((veiculo) => veiculo.placa === placa);
@@ -57,39 +45,21 @@ function calculaTempo(placa) {
     return confirm(`O veículo ficou estacionado por ${horas} horas 
       e ${minutos} minutos. Confirma a saída?`);
 }
-/**
- * Verifica se a placa possui 7 caracteres alfanuméricos
- * @param {string} placa Placa a ser testada
- * @return {boolean} Retorna true se a placa está no formato correto.
- */
 function formatoPlaca(placa) {
     const regex = /[A-Z0-9]{7}/;
     return regex.test(placa);
 }
-/**
- * Retorna uma string com o horário atual no formato HH:mm
- * @return {string} Horário atual no formato HH:mm
- */
 function horarioAtual() {
     const horas = String(new Date().getHours()).padStart(2, '0');
     const minutos = String(new Date().getMinutes()).padStart(2, '0');
     return `${horas}:${minutos}`;
 }
-/**
- * Limpa todos os formulários.
- */
 function limpaFormulario() {
     inputNome.value = '';
     inputPlaca.value = '';
     inputEntrada.value = '';
     visibilidadeFormulario();
 }
-/**
- * Calcula tempo de estacionamento.
- * Pede confirmação de saída.
- * Se confirmado, remove o veículo do model e local storage.
- * @param {string} placa Placa do veículo.
- */
 function registrarSaida(placa) {
     if (calculaTempo(placa)) {
         veiculosNoPatio.remove(placa);
@@ -97,19 +67,10 @@ function registrarSaida(placa) {
         atualizaView();
     }
 }
-/**
- * Habilita formulário de registro.
- * Define horário do input de entrada igual ao horário atual.
- */
 function registrarVeiculo() {
     visibilidadeFormulario();
     inputEntrada.value = horarioAtual();
 }
-/**
- * Salva veículo com dados do formulário.
- * Atualiza view.
- * Limpa o formulário.
- */
 function salva() {
     const veiculo = new Veiculo(inputNome.value, inputPlaca.value, inputEntrada.value);
     veiculosNoPatio.adiciona(veiculo);
@@ -117,11 +78,6 @@ function salva() {
     atualizaView();
     limpaFormulario();
 }
-/**
- * Define validação do campo de placa.
- * Busca placa repetida e faz validação dos caracteres permitidos.
- * @param {HTMLInputElement} campoPlaca Campo de placa
- */
 function validaPlaca(campoPlaca) {
     campoPlaca.value = campoPlaca.value.toUpperCase();
     campoPlaca.value = campoPlaca.value.replace('-', '');
@@ -133,9 +89,6 @@ function validaPlaca(campoPlaca) {
         campoPlaca.setCustomValidity('Erro no preenchimento da placa');
     }
 }
-/**
- * Vincula os botões da tabela com os listeners de onclick.
- */
 function vinculaBotoes() {
     const botoesDeSaida = document.querySelectorAll('.saida');
     botoesDeSaida.forEach(function (botao) {
@@ -144,9 +97,6 @@ function vinculaBotoes() {
         });
     });
 }
-/**
- * Altera a visibilidade do formulário e do botão registrar novo veículo.
- */
 function visibilidadeFormulario() {
     botaoRegistrar.classList.toggle('invisible');
     formulario.classList.toggle('invisible');
